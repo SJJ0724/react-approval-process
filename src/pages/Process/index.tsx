@@ -1,9 +1,15 @@
+import { getAllMember } from '@/services/test-api/process';
 import { PageContainer } from '@ant-design/pro-components';
 import { useModel } from '@umijs/max';
 import { Card } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 const Process: React.FC = () => {
   const { initialState } = useModel('@@initialState');
+  useEffect(() => {
+    getAllMember().then((res) => {
+      console.log(res);
+    });
+  }, []);
   return (
     <PageContainer>
       <Card
