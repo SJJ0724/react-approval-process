@@ -1,11 +1,20 @@
+import ChooseMembers from '@/components/chooseMember';
+import store from '@/redux/store';
 import { Form, Input, Select } from 'antd';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 const BaseSetting: React.FC = () => {
   const formRef = useRef<any>();
+  const [isShowChoose, setIsShowChoose] = useState<boolean>(true);
   const formGroup = [
     { id: 1, group_name: '分组1' },
     { id: 2, group_name: '分组2' },
   ];
+  useEffect(() => {
+    store.dispatch({ type: '666' });
+  }, []);
+  const cancelChooseMembers = () => {
+    setIsShowChoose(false);
+  };
   return (
     <>
       <Form
@@ -104,6 +113,10 @@ const BaseSetting: React.FC = () => {
         targetKey={targetKeysRange}
         onlyMember={false}
       /> */}
+      <ChooseMembers
+        isOpen={isShowChoose}
+        cancelChooseMembers={cancelChooseMembers}
+      ></ChooseMembers>
     </>
   );
 };
