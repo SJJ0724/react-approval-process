@@ -1,13 +1,18 @@
+import { MemberContext } from '@/pages/Process';
 import { Modal } from 'antd';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 interface propsType {
-  isOpen: boolean;
+  // isOpen: boolean;
   cancelChooseMembers: () => void;
 }
 const ChooseMembers: React.FC<propsType> = (props) => {
-  const { isOpen, cancelChooseMembers } = props;
+  const { cancelChooseMembers } = props;
+  const Members = useContext(MemberContext);
+  useEffect(() => {
+    console.log(Members);
+  }, []);
   return (
-    <Modal open={isOpen} onCancel={cancelChooseMembers} title="选择成员">
+    <Modal open={true} onCancel={cancelChooseMembers} title="选择成员">
       chooseMember
     </Modal>
   );
